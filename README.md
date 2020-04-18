@@ -16,10 +16,10 @@ Exercício 1- Retrieving Nodes
 Exercício 2 – Filtering queries using property values  
 
 2.1 Retrieve all movies that were released in a specific year.  
-`match (m:Movie{released:1995}) where exists (m.released) return m`
+`match (m:Movie{released:1995}) where exists (m.released) return m`  
 
 2.2 View the retrieved results as a table. 
-Ok. Visualizado no Browser do Neo4j em formato de tabela.  
+Visualizado no Browser do Neo4j em formato de tabela.  
 
 2.3 Query the database for all property keys.     
 `call db.propertyKeys`
