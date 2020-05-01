@@ -65,12 +65,15 @@ Exercício 4 – Filtering queries using WHERE clause
 `match (m:Movie) where m.title = 'The Matrix' return m`  
 
 4.5: Retrieve all people that wrote movies by testing the relationship between two nodes.  
+`match (p:Person)-[rel:WROTE]->(m:Movie) return p.name, m.title`  
 
 
 4.6: Retrieve all people in the graph that do not have a property.  
+`match (m:Movie) where not exists (m.tagline) return m`  
 
 
-4.7: Retrieve all people related to movies where the relationship has a property.  
+4.7: Retrieve all people related to movies where the relationship has a property. 
+
 
 
 4.8: Retrieve all actors whose name begins with James.  
