@@ -130,10 +130,13 @@ Retrieve all movies that Tom Cruise has acted in and the co-actors that acted in
 `match(p:Person)-[:REVIEWED]->(m:Movie) return collect(p.name) as reviwers, m.title, count(p) as qtdeReviwers`  
 
 5.10: Retrieve nodes and their relationships as lists.  
-
+`match(p:Person)-[:DIRECTED]->(m:Movie)<-[:ACTED_IN]-(p2:Person) return p.name as Director,count(p2) as qtdeAtores, collect(p2.name) as Atores`  
 
 5.11: Retrieve the actors who have acted in exactly five movies.  
+`match(p:Person)-[:ACTED_IN]->(m:Movie) with p, count(p) as qtdeFilmes, collect(m.title) as Filmes where qtdeFilmes = 5 return p.name, Filmes`  
+
 5.12: Retrieve the movies that have at least 2 directors with other optional data.  
+`match (m:Movie) with m, size((:Person)-[:DIRECTED]->(m)) as Diretores where Diretores >=2 optional match (p:Person)-[:REVIEWED]->(m) return m.title, p.name`  
 
 Exercício 6 – Controlling results returned    
 
