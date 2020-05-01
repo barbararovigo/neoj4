@@ -36,22 +36,27 @@ Visualizado no Browser do Neo4j em formato de tabela.
 Exercício 3 - Filtering queries using relationships
 
 3.1 Display the schema of the database.  
+`call db.schema.visualization`  
 
 3.2 Retrieve all people who wrote the movie Speed Racer.  
+`match(p:Person)-[rel:WROTE]->(m:Movie{title:'Speed Racer'}) return p`
 
 3.3 Retrieve all movies that are connected to the person,Tom Hanks.  
+`match (m:Movie) <-- (p:Person {name: 'Tom Hanks'}) return m.title`
 
 3.4 Retrieve information about the relationships Tom Hanks had with the set of movies retrieved earlier.  
+`match (m:Movie) -[rel]- (p:Person {name: 'Tom Hanks'}) return m.title, type(rel)`
 
 3.5 Retrieve information about the roles that Tom Hanks acted in.  
+`match (m:Movie) -[rel:ACTED_IN]- (p:Person {name: 'Tom Hanks'}) return m.title, type(rel)`
 
-
-Exercício 4 – Filtering queries using WHERE clause
+Exercício 4 – Filtering quermatch(p:Person)-[rel:WROTE]->(m:Movie{title:'Speed Racer'}) return p, rel, mies using WHERE clause
 
 4.1: Retrieve all movies that Tom Cruise acted in.  
+`match (m:Movie) -[rel:ACTED_IN]- (p:Person {name: 'Tom Hanks'}) return m.title, type(rel)`  
 
+4.2: Retrieve all people that were born in the 70’s.
 
-4.2: Retrieve all people that were born in the 70’s.  
 
 
 4.3: Retrieve the actors who acted in the movie The Matrix who were born after 1960.  
