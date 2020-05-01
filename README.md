@@ -90,10 +90,11 @@ Exercício 4 – Filtering queries using WHERE clause
 
 
 4.12: Retrieve all movies that were released in a set of years.  
+`match (p:Person)-[:ACTED_IN]->(m:Movie)<-[:ACTED_IN]-(p2:Person) where exists{match (p)-[:DIRECTED]->(m)} return p.name as `Ator e Diretor`,p2.name as Atores, m.title`      
 
 
 4.13: Retrieve the movies that have an actor’s role that is the name of the movie.  
-
+`match (p:Person)-[r:ACTED_IN]-> (m:Movie) where m.title in r.roles return p.name, r.roles, m.title`  
 
 
 
