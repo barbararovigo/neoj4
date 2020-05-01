@@ -124,12 +124,14 @@ RETURN m.title as Filme, d.name as Diretor , a2.name AS `Co-Atores``
 
 5.8: (Este não estava no PDF mas inseri porque estava no Neo4j!
 Retrieve all movies that Tom Cruise has acted in and the co-actors that acted in the same movie by collecting a list (Instructions)
-`` 
+`match(p:Person)-[:ACTED_IN]->(m:Movie)<-[:ACTED_IN]-(p2:Person) where p.name = 'Tom Cruise' return p.name, m.title, collect(p2.name) as `Co-Atores``   
 
-5.9: Retrieve nodes as lists and return data associated with the corresponding lists. 
-
+5.9: Retrieve nodes as lists and return data associated with the corresponding lists.   
+`match(p:Person)-[:REVIEWED]->(m:Movie) return collect(p.name) as reviwers, m.title, count(p) as qtdeReviwers`  
 
 5.10: Retrieve nodes and their relationships as lists.  
+
+
 5.11: Retrieve the actors who have acted in exactly five movies.  
 5.12: Retrieve the movies that have at least 2 directors with other optional data.  
 
