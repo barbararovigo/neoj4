@@ -98,11 +98,23 @@ Exercício 4 – Filtering queries using WHERE clause
 
 Exercicio 5 - Controlling query processing    
 
-5.1: Retrieve data using multiple MATCH patterns.  
+5.1: Retrieve data using multiple MATCH patterns. 
+`MATCH (a:Person)-[:ACTED_IN]->(m:Movie)<-[:DIRECTED]-(d:Person),
+      (a2:Person)-[:ACTED_IN]->(m)
+WHERE a.name = 'Tom Hanks'
+RETURN m.title as Filme, d.name as Diretor , a2.name AS `Co-Atores``  
+
 5.2: Retrieve particular nodes that have a relationship.  
-5.3: Modify the query to retrieve nodes that are exactly three hops away.  
-5.4: Modify the query to retrieve nodes that are one and two hops away.  
-5.5: Modify the query to retrieve particular nodes that are connected no matter how many hops are required.  
+`match(p:Person)-[:FOLLOWS]-(p2:Person) where p.name = 'Paul Blythe' return p, p2`  
+
+5.3: Modify the query to retrieve nodes that are exactly three hops away.
+´match(p:Person)-[:FOLLOWS*3]-(p2:Person) where p.name = 'Paul Blythe' return p, p2´  
+
+5.4: Modify the query to retrieve nodes that are one and two hops away. 
+`match(p:Person)-[:FOLLOWS*1..2]-(p2:Person) where p.name = 'Paul Blythe' return p, p2´  
+
+5.5: Modify the query to retrieve particular nodes that are connected no matter how many hops are required. 
+
 5.6: Specify optional data to be retrieved during the query.  
 5.7: Retrieve nodes by collecting a list.  
 5.9: Retrieve nodes as lists and return data associated with the corresponding lists.  
