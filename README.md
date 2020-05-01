@@ -50,17 +50,16 @@ Exercício 3 - Filtering queries using relationships
 3.5 Retrieve information about the roles that Tom Hanks acted in.  
 `match (m:Movie) -[rel:ACTED_IN]- (p:Person {name: 'Tom Hanks'}) return m.title, type(rel)`
 
-Exercício 4 – Filtering quermatch(p:Person)-[rel:WROTE]->(m:Movie{title:'Speed Racer'}) return p, rel, mies using WHERE clause
+Exercício 4 – Filtering queries using WHERE clause
 
 4.1: Retrieve all movies that Tom Cruise acted in.  
-`match (m:Movie) -[rel:ACTED_IN]- (p:Person {name: 'Tom Hanks'}) return m.title, type(rel)`  
+`match (m:Movie) -[rel:ACTED_IN]- (p:Person {name: 'Tom Cruise'}) return m.title, type(rel)`  
 
 4.2: Retrieve all people that were born in the 70’s.
-
-
-
+`match (p:Person) where p.born >= 1970 and p.born <= 1979 return p.name, p.born`  
+  
 4.3: Retrieve the actors who acted in the movie The Matrix who were born after 1960.  
-
+`match (p:Person)-[rel:ACTED_IN]->(m:Movie{title:'The Matrix'}) where p.born > 1960 return p.name, p.born`
 
 4.4: Retrieve all movies by testing the node label and a property.  
 
