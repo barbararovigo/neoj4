@@ -83,9 +83,10 @@ Exercício 4 – Filtering queries using WHERE clause
 `match (p:Person)-[rel:REVIEWED]->(m:Movie) where m.released > 2010  return m.title, m.released`  
 
 4.10: Retrieve all people who have produced a movie, but have not directed a movie.  
+`match (p:Person)-[:PRODUCED]->(m:Movie) where not ((p)-[:DIRECTED]->(:Movie)) return p.name,m.title`  
 
-
-4.11: Retrieve the movies and their actors where one of the actors also directed the movie.  
+4.11: Retrieve the movies and their actors where one of the actors also directed the movie. 
+`match (p:Person)-[:ACTED_IN]->(m:Movie)<-[:ACTED_IN]-(p2:Person) where exists((p2)-[:DIRECTED]->(m)) return p.name,p2.name, m.title`
 
 
 4.12: Retrieve all movies that were released in a set of years.  
