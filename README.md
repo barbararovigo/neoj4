@@ -69,18 +69,18 @@ Exercício 4 – Filtering queries using WHERE clause
 
 
 4.6: Retrieve all people in the graph that do not have a property.  
-`match (m:Movie) where not exists (m.tagline) return m`  
+`match (m:Movie) where not exists (m.tagline) return m`    
 
 
 4.7: Retrieve all people related to movies where the relationship has a property. 
-`match(p:Person)-[rel]->(m:Movie) where exists(rel.roles) return p.name,m.title, rel.roles`  
+`match(p:Person)-[rel]->(m:Movie) where exists(rel.roles) return p.name,m.title, rel.roles`    
 
 
 4.8: Retrieve all actors whose name begins with James.  
+`match(p:Person) -[rel:ACTED_IN]->(m:Movie) where p.name =~ 'James.*'  return p.name, m.title, rel`  
 
-
-4.9: Retrieve all all REVIEW relationships from the graph with filtered results.  
-
+4.9: Retrieve all REVIEW relationships from the graph with filtered results.  
+`match (p:Person)-[rel:REVIEWED]->(m:Movie) where m.released > 2010  return m.title, m.released`  
 
 4.10: Retrieve all people who have produced a movie, but have not directed a movie.  
 
