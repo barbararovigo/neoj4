@@ -59,10 +59,10 @@ Exercício 4 – Filtering queries using WHERE clause
 `match (p:Person) where p.born >= 1970 and p.born <= 1979 return p.name, p.born`  
   
 4.3: Retrieve the actors who acted in the movie The Matrix who were born after 1960.  
-`match (p:Person)-[rel:ACTED_IN]->(m:Movie{title:'The Matrix'}) where p.born > 1960 return p.name, p.born`
+`match (p:Person)-[rel:ACTED_IN]->(m:Movie{title:'The Matrix'}) where p.born > 1960 return p.name, p.born`  
 
-4.4: Retrieve all movies by testing the node label and a property.  
-
+4.4: Retrieve all movies by testing the node label and a property.   
+`match (m:Movie) where m.title = 'The Matrix' return m`  
 
 4.5: Retrieve all people that wrote movies by testing the relationship between two nodes.  
 
