@@ -107,17 +107,28 @@ RETURN m.title as Filme, d.name as Diretor , a2.name AS `Co-Atores``
 5.2: Retrieve particular nodes that have a relationship.  
 `match(p:Person)-[:FOLLOWS]-(p2:Person) where p.name = 'Paul Blythe' return p, p2`  
 
-5.3: Modify the query to retrieve nodes that are exactly three hops away.
-´match(p:Person)-[:FOLLOWS*3]-(p2:Person) where p.name = 'Paul Blythe' return p, p2´  
+5.3: Modify the query to retrieve nodes that are exactly three hops away.  
+´match(p:Person)-[:FOLLOWS*3]-(p2:Person) where p.name = 'Paul Blythe' return p, p2´    
 
-5.4: Modify the query to retrieve nodes that are one and two hops away. 
-`match(p:Person)-[:FOLLOWS*1..2]-(p2:Person) where p.name = 'Paul Blythe' return p, p2´  
+5.4: Modify the query to retrieve nodes that are one and two hops away.   
+`match(p:Person)-[:FOLLOWS*1..2]-(p2:Person) where p.name = 'Paul Blythe' return p, p2´    
 
-5.5: Modify the query to retrieve particular nodes that are connected no matter how many hops are required. 
+5.5: Modify the query to retrieve particular nodes that are connected no matter how many hops are required.  
+`match(p:Person)-[:FOLLOWS*]-(p2:Person) where p.name = 'Paul Blythe' return p, p2`  
 
-5.6: Specify optional data to be retrieved during the query.  
+5.6: Specify optional data to be retrieved during the query.    
+´match (p:Person) where p.name starts with 'Tom' optional match (p)-[:DIRECTED]->(m:Movie) return p.name, m.title´ 
+
 5.7: Retrieve nodes by collecting a list.  
-5.9: Retrieve nodes as lists and return data associated with the corresponding lists.  
+`match(p:Person)-[:ACTED_IN]->(m:Movie) return p.name, collect(m.title) as Filmes`  
+
+5.8: (Este não estava no PDF mas inseri porque estava no Neo4j!
+Retrieve all movies that Tom Cruise has acted in and the co-actors that acted in the same movie by collecting a list (Instructions)
+`` 
+
+5.9: Retrieve nodes as lists and return data associated with the corresponding lists. 
+
+
 5.10: Retrieve nodes and their relationships as lists.  
 5.11: Retrieve the actors who have acted in exactly five movies.  
 5.12: Retrieve the movies that have at least 2 directors with other optional data.  
