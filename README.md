@@ -85,7 +85,7 @@ Exercício 4 – Filtering queries using WHERE clause
 4.10: Retrieve all people who have produced a movie, but have not directed a movie.  
 `match (p:Person)-[:PRODUCED]->(m:Movie) where not ((p)-[:DIRECTED]->(:Movie)) return p.name,m.title`  
 
-4.11: Retrieve the movies and their actors where one of the actors also directed the movie. 
+4.11: Retrieve the movies and their actors where one of the actors also directed the movie.   
 `match (p:Person)-[:ACTED_IN]->(m:Movie)<-[:ACTED_IN]-(p2:Person) where exists{match (p)-[:DIRECTED]->(m)} return p.name as `Ator e Diretor`,p2.name as Atores, m.title`  
 
 
@@ -94,9 +94,82 @@ Exercício 4 – Filtering queries using WHERE clause
 
 
 4.13: Retrieve the movies that have an actor’s role that is the name of the movie.  
-`match (p:Person)-[r:ACTED_IN]-> (m:Movie) where m.title in r.roles return p.name, r.roles, m.title`  
+`match (p:Person)-[r:ACTED_IN]-> (m:Movie) where m.title in r.roles return p.name, r.roles, m.title`   
 
+Exercicio 5 - Controlling query processing    
 
+5.1: Retrieve data using multiple MATCH patterns.  
+5.2: Retrieve particular nodes that have a relationship.  
+5.3: Modify the query to retrieve nodes that are exactly three hops away.  
+5.4: Modify the query to retrieve nodes that are one and two hops away.  
+5.5: Modify the query to retrieve particular nodes that are connected no matter how many hops are required.  
+5.6: Specify optional data to be retrieved during the query.  
+5.7: Retrieve nodes by collecting a list.  
+5.9: Retrieve nodes as lists and return data associated with the corresponding lists.  
+5.10: Retrieve nodes and their relationships as lists.  
+5.11: Retrieve the actors who have acted in exactly five movies.  
+5.12: Retrieve the movies that have at least 2 directors with other optional data.  
 
+Exercício 6 – Controlling results returned    
+
+6.1: Execute a query that returns duplicate records.  
+6.2: Modify the query to eliminate duplication.  
+6.3: Modify the query to eliminate more duplication.  
+6.4: Sort results returned.  
+6.5: Retrieve the top 5 ratings and their associated movies  
+6.6: Retrieve all actors that have not appeared in more than 3 movies.    
+
+Exercício 7 – Working with cypher data    
+
+7.1: Collect and use lists.  
+7.2: Collect a list.  
+7.3: Unwind a list.  
+7.4: Perform a calculation with the date type  
+
+Exercício 8 – Creating nodes    
+
+8.1: Create a Movie node.  
+8.2: Retrieve the newly-created node.  
+8.3: Create a Person node.  
+8.4: Retrieve the newly-created node.  
+8.5: Add a label to a node.  
+8.6: Retrieve the node using the new label.  
+8.7: Add the Female label to selected nodes.  
+8.8: Retrieve all Female nodes.  
+8.9: Remove the Female label from the nodes that have this label.  
+8.10: View the current schema of the graph.  
+8.11: Add properties to a movie.  
+8.12: Retrieve an OlderMovie node to confirm the label and properties.  
+8.13: Add properties to the person, Robin Wright.  
+8.14: Retrieve an updated Person node.  
+8.15: Remove a property from a Movie node.  
+8.16: Retrieve the node to confirm that the property has been removed.  
+8.17: Remove a property from a Person node.  
+8.18: Retrieve the node to confirm that the property has been removed.    
+
+Exercício 9 – Creating relationships    
+
+9.1: Create ACTED_IN relationships.  
+9.2: Create DIRECTED relationships.  
+9.3: Create a HELPED relationship.  
+9.4: Query nodes and new relationships.  
+9.5: Add properties to relationships.  
+9.6: Add a property to the HELPED relationship.  
+9.7: View the current list of property keys in the graph.  
+9.8: View the current schema of the graph.  
+9.9: Retrieve the names and roles for actors.  
+9.10: Retrieve information about any specific relationships.  
+9.11: Modify a property of a relationship.  
+9.12: Remove a property from a relationship.  
+9.13: Confirm that your modifications were made to the graph.  
+
+Exercício 10 – Deleting nodes and relationships  
+
+10.1: Delete a relationship.  
+10.2: Confirm that the relationship has been deleted.  
+10.3: Retrieve a movie and all of its relationships.  
+10.4: Try deleting a node without detaching its relationships.  
+10.5: Delete a Movie node, along with its relationships.  
+10.6: Confirm that the Movie node has been deleted.  
 
 
