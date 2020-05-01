@@ -161,10 +161,16 @@ Exercício 6 – Controlling results returned
 Exercício 7 – Working with cypher data    
 
 7.1: Collect and use lists. 
+`match (a:Person)-[:ACTED_IN]->(m:Movie)<-[:PRODUCED]-(p:Person) with m,collect(distinct m.title) as Filmes, collect(distinct a.name) as Atores, collect(distinct p.name) as Produtores return m.title, Atores, Produtores order by size(Atores)`   
 
 7.2: Collect a list.  
+`match (a:Person)-[:ACTED_IN]->(m:Movie) with a, collect(m) as Filmes where size(Filmes) > 5 return a.name, Filmes`  
+
 7.3: Unwind a list.  
+`match (a:Person)-[:ACTED_IN]->(m:Movie) with a, collect(m) as Filmes where size(Filmes) > 5 with a, Filmes unwind Filmes as Filme return a.name, Filme.title`  
+
 7.4: Perform a calculation with the date type  
+
 
 Exercício 8 – Creating nodes    
 
