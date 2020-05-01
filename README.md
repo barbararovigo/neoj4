@@ -141,8 +141,14 @@ Retrieve all movies that Tom Cruise has acted in and the co-actors that acted in
 Exercício 6 – Controlling results returned    
 
 6.1: Execute a query that returns duplicate records.  
+`match (a:Person)-[:ACTED_IN]->(m:Movie) where m.released >= 1990 and m.released < 2000 return  m.title as Filme,collect(a.name) as Atores, m.released as lançamento`  
+
 6.2: Modify the query to eliminate duplication.  
+`match (a:Person)-[:ACTED_IN]->(m:Movie) where m.released >= 1990 and m.released < 2000 return collect(m.title) as Filme,collect(a.name) as Atores, m.released as lançamento`  
+
 6.3: Modify the query to eliminate more duplication.  
+``
+
 6.4: Sort results returned.  
 6.5: Retrieve the top 5 ratings and their associated movies  
 6.6: Retrieve all actors that have not appeared in more than 3 movies.    
