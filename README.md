@@ -73,7 +73,7 @@ Exercício 4 – Filtering queries using WHERE clause
 
 
 4.7: Retrieve all people related to movies where the relationship has a property. 
-
+`match(p:Person)-[rel]->(m:Movie) where exists(rel.roles) return p.name,m.title, rel.roles`  
 
 
 4.8: Retrieve all actors whose name begins with James.  
