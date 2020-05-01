@@ -147,15 +147,21 @@ Exercício 6 – Controlling results returned
 `match (a:Person)-[:ACTED_IN]->(m:Movie) where m.released >= 1990 and m.released < 2000 return collect(m.title) as Filme,collect(a.name) as Atores, m.released as lançamento`  
 
 6.3: Modify the query to eliminate more duplication.  
-``
+`match (a:Person)-[:ACTED_IN]->(m:Movie) where m.released >= 1990 and m.released < 2000 return collect(distinct m.title) as Filme,collect(a.name) as Atores, m.released as lançamento`  
 
 6.4: Sort results returned.  
-6.5: Retrieve the top 5 ratings and their associated movies  
-6.6: Retrieve all actors that have not appeared in more than 3 movies.    
+`match (a:Person)-[:ACTED_IN]->(m:Movie) where m.released >= 1990 and m.released < 2000 return collect(distinct m.title) as Filme,collect(a.name) as Atores, m.released as lançamento order by m.released desc`    
+
+6.5: Retrieve the top 5 ratings and their associated movies 
+`match (p:Person)-[r:REVIEWED]->(m:Movie) return m.title as Filme,r.rating as avaliação order by r.rating desc limit 5`  
+
+6.6: Retrieve all actors that have not appeared in more than 3 movies. 
+`match (a:Person)-[:ACTED_IN]->(m:Movie) with a, count(a) as qtdFilmes, collect(m.title) as Filmes where qtdFilmes <= 3 return a.name, Filmes, qtdFilmes`  
 
 Exercício 7 – Working with cypher data    
 
-7.1: Collect and use lists.  
+7.1: Collect and use lists. 
+
 7.2: Collect a list.  
 7.3: Unwind a list.  
 7.4: Perform a calculation with the date type  
