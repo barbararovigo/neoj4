@@ -1,5 +1,7 @@
 # neoj4
-Exercício 1- Retrieving Nodes  
+:play intro-neo4j-exercises  
+
+Exercício 1- Retrieving Nodes   
 
 1.1 Retrieve all nodes from the database.  
 `match (n) return (n)`  
@@ -237,17 +239,25 @@ Exercício 9 – Creating relationships
 `match (m:Movie) where m.title = 'Forrest Gump' match(p:Person) where p.name in ['Robert Zemeckis'] create (p)-[:DIRECTED]->(m)`  
 
 9.3: Create a HELPED relationship.
-`match(t:Person) where t.name = 'Tom Hanks' match(g:Person) where g.name = 'Gary Sinise'  create (t)-[:HELPED]->(p)`    
+`match(t:Person) where t.name = 'Tom Hanks' match(g:Person) where g.name = 'Gary Sinise'  create (t)-[:HELPED]->(g)`    
 
 9.4: Query nodes and new relationships. 
 `match(p:Person)-[r]-(m:Movie) where m.title='Forrest Gump' return p,m,r`  
 
 9.5: Add properties to relationships.  
-``
+`match (p:Person)-[r:ACTED_IN]->(m:Movie) where  m.title = 'Forrest Gump' set r.roles = case p.name when 'Tom Hanks' then ['Forrest Gump'] when 'Robin Wright' then ['Jenny Curran'] when 'Gary Sinise' then ['Lieutenant Dan Taylor'] end`  
+
 9.6: Add a property to the HELPED relationship.  
+`match (p:Person)-[r:HELPED]->(p2:Person) where  p.name = 'Tom Hanks' and p2.name = 'Gary Sinise' set r.research = 'war history'`  
+
 9.7: View the current list of property keys in the graph.  
+`call db.propertyKeys` 
+
 9.8: View the current schema of the graph.  
-9.9: Retrieve the names and roles for actors.  
+`call db.schema.visualization`
+
+9.9: Retrieve the names and roles for actors.
+
 9.10: Retrieve information about any specific relationships.  
 9.11: Modify a property of a relationship.  
 9.12: Remove a property from a relationship.  
