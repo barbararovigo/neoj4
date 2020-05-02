@@ -169,15 +169,23 @@ Exercício 7 – Working with cypher data
 7.3: Unwind a list.  
 `match (a:Person)-[:ACTED_IN]->(m:Movie) with a, collect(m) as Filmes where size(Filmes) > 5 with a, Filmes unwind Filmes as Filme return a.name, Filme.title`  
 
-7.4: Perform a calculation with the date type  
-
+7.4: Perform a calculation with the date type 
+`match (a:Person)-[:ACTED_IN]->(m:Movie) where a.name = 'Tom Hanks' return m.title, m.released, date().year - m.released as qtdeAnosDaRevisao, m.released - a.born as idadeTom`  
 
 Exercício 8 – Creating nodes    
 
-8.1: Create a Movie node.  
+8.1: Create a Movie node.
+`CREATE (:Movie {title: 'Forrest Gump'})`  
+
 8.2: Retrieve the newly-created node.  
-8.3: Create a Person node.  
+`match (m:Movie) where m.title='Forrest Gump' return m`    
+
+8.3: Create a Person node.
+`Create (:Person{name:'Robin Wright'})`    
+
 8.4: Retrieve the newly-created node.  
+`match (p:Person) where p.name='Robin Wright' return p`
+
 8.5: Add a label to a node.  
 8.6: Retrieve the node using the new label.  
 8.7: Add the Female label to selected nodes.  
