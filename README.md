@@ -220,10 +220,13 @@ Exercício 8 – Creating nodes
 `match (m:Movie) where m.title = 'Forrest Gump' remove m.lengthMinutes`  
 
 8.16: Retrieve the node to confirm that the property has been removed.  
-``
+`match (m:Movie) where m.title = 'Forrest Gump' return m`  
 
 8.17: Remove a property from a Person node.  
-8.18: Retrieve the node to confirm that the property has been removed.    
+`match (p:Person) where p.name = 'Robin Wright' remove p.birthPlace`  
+
+8.18: Retrieve the node to confirm that the property has been removed. 
+`` 
 
 Exercício 9 – Creating relationships    
 
