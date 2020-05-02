@@ -222,15 +222,17 @@ Exercício 8 – Creating nodes
 8.16: Retrieve the node to confirm that the property has been removed.  
 `match (m:Movie) where m.title = 'Forrest Gump' return m`  
 
-8.17: Remove a property from a Person node.  
-`match (p:Person) where p.name = 'Robin Wright' remove p.birthPlace`  
+8.17: Remove a property from a Person node.    
+`match (p:Person) where p.name = 'Robin Wright' remove p.birthPlace`    
 
-8.18: Retrieve the node to confirm that the property has been removed. 
-`` 
+8.18: Retrieve the node to confirm that the property has been removed.   
+`match (p:Person) where p.name = 'Robin Wright' return p`   
 
 Exercício 9 – Creating relationships    
 
-9.1: Create ACTED_IN relationships.  
+9.1: Create ACTED_IN relationships.
+
+
 9.2: Create DIRECTED relationships.  
 9.3: Create a HELPED relationship.  
 9.4: Query nodes and new relationships.  
