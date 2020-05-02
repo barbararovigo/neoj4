@@ -230,13 +230,20 @@ Exercício 8 – Creating nodes
 
 Exercício 9 – Creating relationships    
 
-9.1: Create ACTED_IN relationships.
+9.1: Create ACTED_IN relationships.  
+`match (m:Movie) where m.title = 'Forrest Gump' match(p:Person) where p.name in ['Tom Hanks', 'Robin Wright', 'Gary Sinise'] create (p)-[:ACTED_IN]->(m)`  
 
+9.2: Create DIRECTED relationships. 
+`match (m:Movie) where m.title = 'Forrest Gump' match(p:Person) where p.name in ['Robert Zemeckis'] create (p)-[:DIRECTED]->(m)`  
 
-9.2: Create DIRECTED relationships.  
-9.3: Create a HELPED relationship.  
-9.4: Query nodes and new relationships.  
+9.3: Create a HELPED relationship.
+`match(t:Person) where t.name = 'Tom Hanks' match(g:Person) where g.name = 'Gary Sinise'  create (t)-[:HELPED]->(p)`    
+
+9.4: Query nodes and new relationships. 
+`match(p:Person)-[r]-(m:Movie) where m.title='Forrest Gump' return p,m,r`  
+
 9.5: Add properties to relationships.  
+``
 9.6: Add a property to the HELPED relationship.  
 9.7: View the current list of property keys in the graph.  
 9.8: View the current schema of the graph.  
