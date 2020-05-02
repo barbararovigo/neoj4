@@ -184,13 +184,23 @@ Exercício 8 – Creating nodes
 `Create (:Person{name:'Robin Wright'})`    
 
 8.4: Retrieve the newly-created node.  
-`match (p:Person) where p.name='Robin Wright' return p`
+`match (p:Person) where p.name='Robin Wright' return p`  
 
 8.5: Add a label to a node.  
-8.6: Retrieve the node using the new label.  
+`match (m:Movie) where m.released < 2010 set m:OlderMovie return distinct labels(m)`    
+
+8.6: Retrieve the node using the new label.   
+`match (m:OlderMovie) return m.title, m.released`  
+
 8.7: Add the Female label to selected nodes.  
+`match (p:Person) where p.name starts with 'Robin' set p:Female`  
+
 8.8: Retrieve all Female nodes.  
-8.9: Remove the Female label from the nodes that have this label.  
+`match (p:Female) return p`  
+
+8.9: Remove the Female label from the nodes that have this label.
+
+
 8.10: View the current schema of the graph.  
 8.11: Add properties to a movie.  
 8.12: Retrieve an OlderMovie node to confirm the label and properties.  
