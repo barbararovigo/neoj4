@@ -24,7 +24,7 @@ Exercício 2 – Filtering queries using property values
 Visualizado no Browser do Neo4j em formato de tabela.  
 
 2.3 Query the database for all property keys.     
-`call db.propertyKeys`
+`call db.propertyKeys`  
 
 2.4 Retrieve all Movies released in a specific year, returning their titles.    
 `match(m:Movie{released:1995}) return m.title`  
@@ -35,29 +35,29 @@ Visualizado no Browser do Neo4j em formato de tabela.
 2.6 Display more user-friendly headers in the table.  
 `match(m:Movie) return m.title as título, m.released as lançamento, m.tagline as slogan`  
 
-Exercício 3 - Filtering queries using relationships
+Exercício 3 - Filtering queries using relationships  
 
 3.1 Display the schema of the database.  
 `call db.schema.visualization`  
 
 3.2 Retrieve all people who wrote the movie Speed Racer.  
-`match(p:Person)-[rel:WROTE]->(m:Movie{title:'Speed Racer'}) return p`
+`match(p:Person)-[rel:WROTE]->(m:Movie{title:'Speed Racer'}) return p`  
 
 3.3 Retrieve all movies that are connected to the person,Tom Hanks.  
-`match (m:Movie) <-- (p:Person {name: 'Tom Hanks'}) return m.title`
+`match (m:Movie) <-- (p:Person {name: 'Tom Hanks'}) return m.title`  
 
 3.4 Retrieve information about the relationships Tom Hanks had with the set of movies retrieved earlier.  
-`match (m:Movie) -[rel]- (p:Person {name: 'Tom Hanks'}) return m.title, type(rel)`
+`match (m:Movie) -[rel]- (p:Person {name: 'Tom Hanks'}) return m.title, type(rel)`  
 
 3.5 Retrieve information about the roles that Tom Hanks acted in.  
-`match (m:Movie) -[rel:ACTED_IN]- (p:Person {name: 'Tom Hanks'}) return m.title, type(rel)`
+`match (m:Movie) -[rel:ACTED_IN]- (p:Person {name: 'Tom Hanks'}) return m.title, type(rel)`  
 
-Exercício 4 – Filtering queries using WHERE clause
+Exercício 4 – Filtering queries using WHERE clause  
 
 4.1: Retrieve all movies that Tom Cruise acted in.  
 `match (m:Movie) -[rel:ACTED_IN]- (p:Person {name: 'Tom Cruise'}) return m.title, type(rel)`  
 
-4.2: Retrieve all people that were born in the 70’s.
+4.2: Retrieve all people that were born in the 70’s.  
 `match (p:Person) where p.born >= 1970 and p.born <= 1979 return p.name, p.born`  
   
 4.3: Retrieve the actors who acted in the movie The Matrix who were born after 1960.  
@@ -124,7 +124,7 @@ RETURN m.title as Filme, d.name as Diretor , a2.name AS `Co-Atores``
 5.7: Retrieve nodes by collecting a list.  
 `match(p:Person)-[:ACTED_IN]->(m:Movie) return p.name, collect(m.title) as Filmes`  
 
-5.8: (Este não estava no PDF mas inseri porque estava no Neo4j!
+5.8: (Este não estava no PDF mas inseri porque estava no Neo4j!  
 Retrieve all movies that Tom Cruise has acted in and the co-actors that acted in the same movie by collecting a list (Instructions)
 `match(p:Person)-[:ACTED_IN]->(m:Movie)<-[:ACTED_IN]-(p2:Person) where p.name = 'Tom Cruise' return p.name, m.title, collect(p2.name) as `Co-Atores``   
 
@@ -176,13 +176,13 @@ Exercício 7 – Working with cypher data
 
 Exercício 8 – Creating nodes    
 
-8.1: Create a Movie node.
+8.1: Create a Movie node.  
 `CREATE (:Movie {title: 'Forrest Gump'})`  
 
 8.2: Retrieve the newly-created node.  
 `match (m:Movie) where m.title='Forrest Gump' return m`    
 
-8.3: Create a Person node.
+8.3: Create a Person node.  
 `Create (:Person{name:'Robin Wright'})`    
 
 8.4: Retrieve the newly-created node.  
@@ -215,7 +215,7 @@ Exercício 8 – Creating nodes
 8.13: Add properties to the person, Robin Wright.  
 `match (p:Person) where p.name = 'Robin Wright' set p:Person, p.born=1966,p.birthPlace = 'Dallas'`    
 
-8.14: Retrieve an updated Person node.
+8.14: Retrieve an updated Person node.  
 `match (p:Person) where p.name = 'Robin Wright' return p`  
 
 8.15: Remove a property from a Movie node.  
@@ -238,7 +238,7 @@ Exercício 9 – Creating relationships
 9.2: Create DIRECTED relationships. 
 `match (m:Movie) where m.title = 'Forrest Gump' match(p:Person) where p.name in ['Robert Zemeckis'] create (p)-[:DIRECTED]->(m)`  
 
-9.3: Create a HELPED relationship.
+9.3: Create a HELPED relationship.  
 `match(t:Person) where t.name = 'Tom Hanks' match(g:Person) where g.name = 'Gary Sinise'  create (t)-[:HELPED]->(g)`    
 
 9.4: Query nodes and new relationships. 
@@ -254,7 +254,7 @@ Exercício 9 – Creating relationships
 `call db.propertyKeys` 
 
 9.8: View the current schema of the graph.  
-`call db.schema.visualization`
+`call db.schema.visualization`  
 
 9.9: Retrieve the names and roles for actors.  
 `match(p:Person)-[r:ACTED_IN]->(m:Movie) where m.title='Forrest Gump' return p.name, r.roles, m.title`  
@@ -263,12 +263,13 @@ Exercício 9 – Creating relationships
 `match(p:Person)-[r:HELPED]-(p2:Person) return  p.name,r, p2.name`  
 
 9.11: Modify a property of a relationship.  
-`match(p:Person)-[r:ACTED_IN]-(m:Movie) where p.name = 'Gary Sinise' and m.title = 'Forrest Gump' set r.roles = ['Lt. Dan Taylor']`
+`match(p:Person)-[r:ACTED_IN]-(m:Movie) where p.name = 'Gary Sinise' and m.title = 'Forrest Gump' set r.roles = ['Lt. Dan Taylor']`  
 
-9.12: Remove a property from a relationship.
-`match(t:Person)-[r:HELPED]->(g:Person) where t.name = 'Tom Hanks' and g.name = 'Gary Sinise' remove r.research`
+9.12: Remove a property from a relationship.  
+`match(t:Person)-[r:HELPED]->(g:Person) where t.name = 'Tom Hanks' and g.name = 'Gary Sinise' remove r.research`  
 
 9.13: Confirm that your modifications were made to the graph.  
+`match(p:Person)-[r:ACTED_IN]->(m:Movie) where m.title = 'Forrest Gump' return p, r, m`  
 
 Exercício 10 – Deleting nodes and relationships  
 
