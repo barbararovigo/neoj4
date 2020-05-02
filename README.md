@@ -256,9 +256,12 @@ Exercício 9 – Creating relationships
 9.8: View the current schema of the graph.  
 `call db.schema.visualization`
 
-9.9: Retrieve the names and roles for actors.
+9.9: Retrieve the names and roles for actors.  
+`match(p:Person)-[r:ACTED_IN]->(m:Movie) where m.title='Forrest Gump' return p.name, r.roles, m.title`  
 
 9.10: Retrieve information about any specific relationships.  
+``
+
 9.11: Modify a property of a relationship.  
 9.12: Remove a property from a relationship.  
 9.13: Confirm that your modifications were made to the graph.  
