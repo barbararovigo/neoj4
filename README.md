@@ -274,10 +274,21 @@ Exercício 9 – Creating relationships
 Exercício 10 – Deleting nodes and relationships  
 
 10.1: Delete a relationship.  
+`match(t:Person)-[r:HELPED]->(g:Person) where t.name = 'Tom Hanks' and g.name = 'Gary Sinise' delete r` 
+
 10.2: Confirm that the relationship has been deleted.  
+`match(:Person)-[r:HELPED]-(:Person) return r`  
+
 10.3: Retrieve a movie and all of its relationships.  
-10.4: Try deleting a node without detaching its relationships.  
-10.5: Delete a Movie node, along with its relationships.  
-10.6: Confirm that the Movie node has been deleted.  
+`match(p:Person)-[r]-(m:Movie) where m.title='Forrest Gump' return p, r, m`  
+
+10.4: Try deleting a node without detaching its relationships.    
+`match(m:Movie) where m.title='Forrest Gump' delete m`  
+
+10.5: Delete a Movie node, along with its relationships. 
+`match(m:Movie) where m.title='Forrest Gump' detach delete m`  
+
+10.6: Confirm that the Movie node has been deleted.     
+`match(p:Person)-[r]-(m:Movie) where m.title='Forrest Gump' return p, r, m`    
 
 
