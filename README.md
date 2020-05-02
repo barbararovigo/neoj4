@@ -266,7 +266,7 @@ Exercício 9 – Creating relationships
 `match(p:Person)-[r:ACTED_IN]-(m:Movie) where p.name = 'Gary Sinise' and m.title = 'Forrest Gump' set r.roles = ['Lt. Dan Taylor']`
 
 9.12: Remove a property from a relationship.
-``
+`match(t:Person)-[r:HELPED]->(g:Person) where t.name = 'Tom Hanks' and g.name = 'Gary Sinise' remove r.research`
 
 9.13: Confirm that your modifications were made to the graph.  
 
