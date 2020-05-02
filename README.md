@@ -195,19 +195,33 @@ Exercício 8 – Creating nodes
 8.7: Add the Female label to selected nodes.  
 `match (p:Person) where p.name starts with 'Robin' set p:Female`  
 
-8.8: Retrieve all Female nodes.  
-`match (p:Female) return p`  
+8.8: Retrieve all Female nodes.    
+`match (p:Female) return p`    
 
-8.9: Remove the Female label from the nodes that have this label.
+8.9: Remove the Female label from the nodes that have this label.  
+`match (p:Female) remove p:Female`  
 
+8.10: View the current schema of the graph. 
+`call db.schema.visualization`  
 
-8.10: View the current schema of the graph.  
-8.11: Add properties to a movie.  
+8.11: Add properties to a movie.   
+`match (m:Movie) where m.title = 'Forrest Gump' set m:OlderMovie, m.released = 1994, m.tagline = 'Life is like a box of chocolates…​you never know what you’re gonna get.', m.lengthMinutes=142`  
+
 8.12: Retrieve an OlderMovie node to confirm the label and properties.  
+`match (m:OlderMovie) where m.title = 'Forrest Gump' return m`  
+
 8.13: Add properties to the person, Robin Wright.  
-8.14: Retrieve an updated Person node.  
+`match (p:Person) where p.name = 'Robin Wright' set p:Person, p.born=1966,p.birthPlace = 'Dallas'`    
+
+8.14: Retrieve an updated Person node.
+`match (p:Person) where p.name = 'Robin Wright' return p`  
+
 8.15: Remove a property from a Movie node.  
+`match (m:Movie) where m.title = 'Forrest Gump' remove m.lengthMinutes`  
+
 8.16: Retrieve the node to confirm that the property has been removed.  
+``
+
 8.17: Remove a property from a Person node.  
 8.18: Retrieve the node to confirm that the property has been removed.    
 
